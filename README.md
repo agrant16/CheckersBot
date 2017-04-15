@@ -1,7 +1,8 @@
 # CheckersBot
-
-### CSCI-458
-### 04/12/2017
+**Team Members**: Alan Grant, Timothy Spalding, John Karr  
+**Class**: CSCI-458  
+**School**: Indiana University Southeast  
+**Updated**: 04/15/2017  
 
 This repository is a checkers simulation developed as part of the CheckersBot 
 project in CSCI-C 458: Intelligent Robots and Indiana University Southeast. 
