@@ -1,5 +1,8 @@
 # CheckersBot
 
+### CSCI-458
+### 04/12/2017
+
 This repository is a checkers simulation developed as part of the CheckersBot 
 project in CSCI-C 458: Intelligent Robots and Indiana University Southeast. 
 The goal of this project is to develop a robotic system capable of playing 
