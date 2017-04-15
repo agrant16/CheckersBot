@@ -2,14 +2,19 @@
 # -*- coding: utf-8 -*-
 """board
 
-This module provides access to the CheckersBoard class. This class is used by
-the checkers simulation for a checkers playing robot.
-
+File: board.py
 Author: Alan Grant
 Version: 1.0
 Date: 04/12/2017
 Class: CSCI-C 458
+
+This module provides access to the CheckersBoard class. The CheckersBoard 
+class provides a object interface for a checkers board representation. It 
+allows simple resetting of a game by simply reloading the layout file 
+provided at initialization.
 """
+
+
 import sys
 
 class CheckersBoard:
@@ -17,7 +22,8 @@ class CheckersBoard:
     
     The CheckersBoard class represents a checkers board. It is a simple class
     for storing the layout of a checkers board. It provides an easy way to
-    print the board by using the magic string method.
+    print the board by using the magic string method. It also allows easy 
+    resetting of a board. 
     
     Attributes:
         layout (str) : The file path to file containing the board layout.\n
