@@ -40,4 +40,17 @@ class CheckersBoard:
 
 
     
+    def __str__(self):
+        """__str__
+        
+        The __str__ method returns a string representation of the class.
+        """
+        
+        s = '  ' + ''.join(str(i) for i in range(len(self.board[0]))) + '\n'
+        
+        for i, row in enumerate(self.board):
+            s += chr(i + 65) + ' ' + row + '\n'
+        return s
+        
+        
 
