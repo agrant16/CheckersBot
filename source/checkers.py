@@ -77,4 +77,43 @@ class CheckersGame:
         print('It is the player\'s turn. Please input your move.')
         st = input().split()
         return [(int(ord(x[0]) - 65), int(x[1])) for x in st]
- 
+     
+    
+    def _is_valid_move(self, successors, moves):
+        """_is_valid_move
+        
+        The _is_valid_move function takes the player's move list and checks if 
+        it repesents a legal move for the current game state.
+        
+        Args:
+            moves (list) : A list of tuples (x,y) representing squares on the 
+            board. This list is the sequence of steps 
+            {start, step1, step2, ..., end} which the comprise the player's 
+            move.
+            successors (list) : A list of CheckersState objects representing 
+            all ending states of the player's legal moves. 
+        
+        Returns:
+            bool : True if moves represents a legal move, False otherwise.
+        """
+        valid = False
+        generator = SuccessorGenerator(state)
+        for successor in successors:
+            if successor.moves == moves:
+                valid = True
+        return valid
+        
+    def _game_over(self):
+        """_game_over
+        
+        The _game_over method is run when a terminal state has been reached. 
+        A terminal state results from one of two things happening: either all 
+        of one player's pieces have been removed from the board or one of the 
+        players has no legal moves available. 
+        """
+        if state.bot_lost:
+            print('CONGRATULATIONS! YOU WON THE GAME!')
+        else:
+            print('Unfortunately, you lost the game. '
+                  'All hail our robot overlords.')
+
