@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 """board
 
-File: board.py
-Author: Alan Grant
-Version: 1.0
-Date: 04/12/2017
-Class: CSCI-C 458
+File: board.py \n
+Author: Alan Grant \n
+Version: 1.0 \n
+Date: 04/12/2017 \n
+Class: CSCI-C 458 \n
 
 This module provides access to the CheckersBoard class. The CheckersBoard 
 class provides a object interface for a checkers board representation. It 
@@ -55,7 +55,7 @@ class CheckersBoard:
         s = '  ' + ''.join(str(i) for i in range(len(self.board[0]))) + '\n'
         
         for i, row in enumerate(self.board):
-            s += chr(i + 65) + ' ' + row + '\n'
+            s += chr(i + 65) + ' ' + ''.join(row) + '\n'
         return s
         
         
@@ -76,8 +76,4 @@ class CheckersBoard:
             sys.exit()
             
         with f:
-            self.board = [line.strip() for line in f]
-
-if __name__ == '__main__':
-    board = CheckersBoard('source/layouts/6x6.board')
-    print(board)
+            self.board = [line.strip().split() for line in f]

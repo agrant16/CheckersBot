@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 """checkers
 
-File: checkers.py
-Author: Alan Grant
-Version: 1.0
-Date: 04/12/2017
-Class: CSCI-C 458
+File: checkers.py \n
+Author: Alan Grant \n
+Version: 1.0 \n
+Date: 04/12/2017 \n
+Class: CSCI-C 458 \n
 
 This module provides access to the CheckersGame class. The CheckersGame 
 class controls the logic for running a checkers simulation. 
@@ -38,7 +38,8 @@ class CheckersGame:
         bot (CheckersBot) : The checkers bot. 
     
     """
-    def __init__(self, layout, bot_score=None, bot_depth=None, bot_time=None, bot_func=None):
+    def __init__(self, layout, bot_score, bot_depth, bot_time, 
+                 bot_func=self.eval_func_1):
         """ __init__
         
         The __init__ function is the constructor for the CheckersGame Class.
@@ -62,7 +63,35 @@ class CheckersGame:
         self.player_gen = None
         self.bot = None  
         
-    
+
+    def eval_func_1(state):
+        """eval_func_1
+        
+        This is a generic scoring function for a CheckersState. It simply 
+        assigns a score to each piece on the board and sums that score. 
+        
+        Args:
+            state (CheckersState) : The current game state.
+        
+        Returns:
+            score (int) : A score based on how many pieces are on the board in 
+            the current state.
+        """
+        score = 0
+        for row in state.board:
+            for square in row:
+                if square == 'b':
+                    score += 1.0
+                elif square == 'B':
+                    score += 1.5
+                elif square == 'p':
+                    score -= 1.0
+                elif square == 'P':
+                    score -= 1.5
+
+        return score
+        
+
     def _get_player_move(self):
         """_get_player_move
         
@@ -193,36 +222,3 @@ class CheckersGame:
             self.player_gen.update_state(CheckersState(
                                     self.board.board, 
                                     False, [], self.board_size))
-            
-                    
-        
-
-def eval_func_1(state):
-    # 1 for a normal piece, 1.5 for a king
-    score = 0
-    for row in state.board:
-        for square in row:
-            if square == 'b':
-                score += 1.0
-            elif square == 'B':
-                score += 1.5
-            elif square == 'p':
-                score -= 1.0
-            elif square == 'P':
-                score -= 1.5
-
-    return score  
-    
-       
-if __name__ == '__main__':
-
-
-        
-    if len(sys.argv) > 1:
-        game = CheckersGame(sys.argv[1], 1e9, 25, 20, eval_func_1)
-    else:
-        game = CheckersGame('layouts/8x8_base.board')
-    
-    game.play()
-    
-

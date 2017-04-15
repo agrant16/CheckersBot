@@ -277,8 +277,8 @@ class SuccessorGenerator:
     def update_state(self, new_state):
         """update_state
         
-        The update_state does exactly what it says i does: updates the 
-        current state to a new state.
+        The update_state function does exactly what it says i does: updates 
+        the current state to a new state.
         
         Args:
             new_state (CheckersState) : The most recent state of the game.

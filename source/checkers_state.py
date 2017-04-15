@@ -2,22 +2,24 @@
 # -*- coding: utf-8 -*-
 """checkers_state.py
 
+File: checkers_state.py \n
+Author: Alan Grant \n
+Version: 1.0 \n
+Date: 04/12/2017 \n
+Class: CSCI-C 458 \n
+
 This module provides access to the CheckersState class. This class is used by
 the checkers simulation for a checkers playing robot. It is a state 
-representation of the game board and player turn. 
-
-Author: Alan Grant
-Version: 1.0
-Date: 04/12/2017
-Class: CSCI-C 458
+representation of the game board, win/loss condition, and player turn. 
 """
+
 
 class CheckersState:
     '''CheckersState represents a board state for a checkers game.
 
     Attributes:
         board : A list of strings which represent the state of the board.
-        blacks_move : True if it is black's (the bot's) move.
+        bots_move : True if it is black's (the bot's) move.
         moves : A list of coordinates representing the sequence of moves. 
         size : Size of the board. i.e. if the size is 8 then the board is 8x8.
         bot_lost (bool) : True if the state is terminal and the bot has lost,
@@ -33,7 +35,7 @@ class CheckersState:
         Args:
             board (list) : A list of strings representing the current state of 
             the game board.\n 
-            bots_move (bool) : True if it is the bot's move, False otherwise.\n
+            bots_move (bool) : True if it's the bot's move, False otherwise.\n
             moves (list) : A list of tuples (x, y) representing the squares in 
             the proposed move.\n
             size (int) : The size of the checkers board. A size of 6 is a 6x6 
@@ -54,7 +56,7 @@ class CheckersState:
         Returns:
             bool : True if a terminal state has been reached, False otherwise.
         '''
-        black_exists, white_exists = False, False
+        bot_exists, player_exists = False, False
         for row in self.board:
             for square in row:
                 if square == 'b' or square == 'B':
