@@ -15,9 +15,9 @@ class controls the logic for running a checkers simulation.
 
 import sys
 from board import CheckersBoard
-#from successors import SuccessorGenerator
-#from checkers_state import CheckersState
-#from checkers_bot import CheckersBot
+from successors import SuccessorGenerator
+from checkers_state import CheckersState
+from checkers_bot import CheckersBot
 
 class CheckersGame:
     """CheckersGame
@@ -78,6 +78,7 @@ class CheckersGame:
         st = input().split()
         return [(int(ord(x[0]) - 65), int(x[1])) for x in st]
      
+  
     
     def _is_valid_move(self, successors, moves):
         """_is_valid_move
@@ -97,13 +98,15 @@ class CheckersGame:
             bool : True if moves represents a legal move, False otherwise.
         """
         valid = False
-        generator = SuccessorGenerator(state)
+        new_board = None
         for successor in successors:
             if successor.moves == moves:
                 valid = True
-        return valid
+                new_board = successor.board
+        return valid, new_board
+       
         
-    def _game_over(self):
+    def _game_over(self, state):
         """_game_over
         
         The _game_over method is run when a terminal state has been reached. 
@@ -116,4 +119,110 @@ class CheckersGame:
         else:
             print('Unfortunately, you lost the game. '
                   'All hail our robot overlords.')
+         
+    def _bots_move_to_str(self, moves):
+        """_bots_move_to_str
+        
+        The _bots_move_to_str method returns a string representation of the 
+        bot's move in the coordinate system of the game board.
+        
+        Returns:
+            str : The bot's move as a string. 
+        """
+        s = ''
+        for x,y in moves:
+            s += chr(x + 65) + str(y) + ' '
+        return s + '\n'
+        
+          
+    def play(self):
+        """play
+        
+        The play function begins the game. It instantiates player_gen and bot 
+        with new objects. It uses a while True loop which continues until a 
+        terminal state has been reached. 
+        """
+        state = CheckersState(self.board.board, False, [], self.board_size)
+        self.player_gen = SuccessorGenerator(state)
+        self.bot = CheckersBot(state, 
+                               self.bot_score, 
+                               self.bot_depth, 
+                               self.bot_time, 
+                               self.bot_func)
+        while True:
+            print(self.board)
+
+            # The player's move
+            successors = self.player_gen.successors()
+            
+            if len(successors) == 0:
+                self._game_over(state)
+                break
+                
+            moves = self._get_player_move()
+            valid, new_board = self._is_valid_move(successors, moves)
+            
+            if not valid:
+                print('That is not a legal move. Please attempt another move')
+                continue
+            else:
+                self.board.board = new_board
+
+            print('\n' + str(self.board))
+            
+            state = CheckersState(self.board.board, True, [], self.board_size)
+            
+            if state.is_terminal():
+                self._game_over(state)
+                break
+            
+            # The bot's move
+            print('It is the bot\'s move. Waiting on bot...')
+            self.bot.update_state(state)
+            bots_move = self.bot.get_move()
+            bot_move_str = self._bots_move_to_str(bots_move.moves)
+            print('The bot has chosen the following move: \n' +
+                   bot_move_str)
+
+            if bots_move == None or bots_move.is_terminal():
+                self._game_over(state)
+                break
+            else:
+                self.board.board = bots_move.board  
+            
+            self.player_gen.update_state(CheckersState(
+                                    self.board.board, 
+                                    False, [], self.board_size))
+            
+                    
+        
+
+def eval_func_1(state):
+    # 1 for a normal piece, 1.5 for a king
+    score = 0
+    for row in state.board:
+        for square in row:
+            if square == 'b':
+                score += 1.0
+            elif square == 'B':
+                score += 1.5
+            elif square == 'p':
+                score -= 1.0
+            elif square == 'P':
+                score -= 1.5
+
+    return score  
+    
+       
+if __name__ == '__main__':
+
+
+        
+    if len(sys.argv) > 1:
+        game = CheckersGame(sys.argv[1], 1e9, 25, 20, eval_func_1)
+    else:
+        game = CheckersGame('layouts/8x8_base.board')
+    
+    game.play()
+    
 
