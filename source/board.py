@@ -53,4 +53,25 @@ class CheckersBoard:
         return s
         
         
+    def reset(self):
+        """reset
+        
+        The reset function returns the game board to the original default layout.
+        
+        Args:
+            layout (str) : The file path to the file containing the default
+            board layout. 
+        
+        """
+        try:
+            f = open(self.layout, 'r') 
+        except IOError as err:
+            print(err)
+            sys.exit()
+            
+        with f:
+            self.board = [line.strip() for line in f]
 
+if __name__ == '__main__':
+    board = CheckersBoard('source/layouts/6x6.board')
+    print(board)
