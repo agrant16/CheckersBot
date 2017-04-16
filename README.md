@@ -26,4 +26,4 @@ find several .board files which hold layouts for boards of size 4x4, 6x6, 8x8,
 filepath to that .board file as a command line argument. For example the 
 following command would begin the game with a 10x10 board:
 
-'''python3 main.py source/layouts/10x10.board'''
+```python3 main.py source/layouts/10x10.board```
