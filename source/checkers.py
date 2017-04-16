@@ -151,10 +151,8 @@ class CheckersGame:
 
             # The player's move
             self.player_gen.update_state(
-                CheckersState(
-                              self.board.board,
-                              False, [], self.board_size))
-                              
+                CheckersState(self.board.board, False, [], self.board_size))
+
             successors = self.player_gen.successors()
 
             if len(successors) == 0:
@@ -182,7 +180,7 @@ class CheckersGame:
             print('It is the bot\'s move. Waiting on bot...')
             self.bot.update_state(state)
             bots_move = self.bot.get_move()
-            
+
             if bots_move:
                 bot_move_str = self._bots_move_to_str(bots_move.moves)
                 print('The bot has chosen the following move: \n' +

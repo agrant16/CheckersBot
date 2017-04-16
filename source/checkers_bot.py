@@ -57,11 +57,31 @@ class CheckersBot:
         else:
             self.score_func = self.pieces_count
 
+    def is_invulnerable(self, state, x, y):
+        """is_invulnerable
+
+        The is_invulnerable function checks to see if a piece is at the edge
+        of the board. If the piece is located at an edge it cannot be taken.
+
+        Args:
+            state (CheckersState) : The current state of the game.
+            x (int) : The row on the board.
+            y (int) : The column on the board.
+
+        Returns:
+            bool : True if the piece is on an edge, False otherwise.
+        """
+        x_bounds = x == 0 or x == (state.size - 1)
+        y_bounds = y == 0 or y == (state.size - 1)
+        return x_bounds or y_bounds
+
     def pieces_count(self, state):
         """pieces_count
 
         This is a generic scoring function for a CheckersState. It simply
-        assigns a score to each piece on the board and sums that score.
+        assigns a score to each piece on the board and sums that score. It
+        also will adjust the score if the piece is invulnerable. Pieces
+        which cannot be taken are given a higher score.
 
         Args:
             state (CheckersState) : The current game state.
@@ -71,19 +91,24 @@ class CheckersBot:
             the current state.
         """
         bot, player = 0, 0
-        for row in state.board:
-            for square in row:
+        for i, row in enumerate(state.board):
+            for j, square in enumerate(row):
+                if self.is_invulnerable(state, i, j):
+                    adjuster = 1
+                else:
+                    adjuster = 0
+
                 if square == 'b':
-                    bot += 1.0
+                    bot += 1.0 + adjuster
                 elif square == 'B':
-                    bot += 1.5
+                    bot += 1.5 + adjuster
                 elif square == 'p':
-                    player += 1.0
+                    player += 1.0 + adjuster
                 elif square == 'P':
-                    player += 1.5
+                    player += 1.5 + adjuster
 
         return (bot - player) if state.bots_move else (player - bot)
-        
+
     def _max_value(self, state, alpha, beta, depth):
         """_max_value
 
