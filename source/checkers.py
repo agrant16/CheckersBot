@@ -111,6 +111,9 @@ class CheckersGame:
         A terminal state results from one of two things happening: either all
         of one player's pieces have been removed from the board or one of the
         players has no legal moves available.
+        
+        Args:
+            state (CheckersState) : The current game state. 
         """
         if state.bot_lost:
             print('CONGRATULATIONS! YOU WON THE GAME!')
@@ -187,5 +190,6 @@ class CheckersGame:
                       bot_move_str)
                 self.board.board = bots_move.board
             elif not bots_move or bots_move.is_terminal():
+                state.bot_lost = True
                 self._game_over(state)
                 break
