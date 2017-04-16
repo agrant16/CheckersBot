@@ -26,12 +26,12 @@ find several .board files which hold layouts for boards of size 4x4, 6x6, 8x8,
 filepath to that .board file as a command line argument. For example the 
 following command would begin the game with a 10x10 board:
 
-```python3 main.py source/layouts/10x10.board```
+``python3 main.py source/layouts/10x10.board``
 
 Once the game has begun the current board state will printed to stdout in the 
 following format:  
 
-``` 
+`` 
       0123456789
     A _b_b_b_b_b
     B b_b_b_b_b_
@@ -43,7 +43,7 @@ following format:
     H p_p_p_p_p_
     I _p_p_p_p_p
     J p_p_p_p_p_
-```
+``
 
 The size of the board will vary depending on which board layout you use, but it 
 will follow the same style. 'b's are pieces controlled by the bot and 'p's are 
@@ -53,14 +53,15 @@ that piece will be a capital letter.
 The human player always starts first and to input a move you simply type the 
 coordinates of the piece you want to move and the square you want to move the 
 piece to. For example, when prompted to choose your move typing:  
-```G3 F4```
+
+``G3 F4``
 
 will move the piece located at square G3 to square F4.  
 
 You perform jumps the same way and to perform multiple jumps you simply add 
 the need squares. For example if we have the following layout:
 
-``` 
+`` 
      012345
    A ______
    B __b___
@@ -68,10 +69,10 @@ the need squares. For example if we have the following layout:
    D ____b_
    E _____p
    F ______
-```
+``
 and we type in the following move:
 
-```E5 C3 A1```
+``E5 C3 A1``
 
 our piece will jump both of the bot's pieces and win the game.   
 
@@ -83,21 +84,30 @@ This bot uses an iterative deepening depth-first search (IDDFS) with a minimax
 algorithm for decision making. It also uses Alpha-Beta pruning to avoid 
 travelling paths the bot will never choose. The algorithm was inpsired by a 
 [blog post](https://kartikkukreja.wordpress.com/2015/07/12/creating-a-bot-for-checkers/)
- from Kartik Kukreja.  
+ from Kartik Kukreja. I've also included some links below if you're intersted 
+in learning more about these algorithms.   
 
-<a href="https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search" target="_blank">IDDFS</a>
-[IDDFS]()  
-[Minimax](https://en.wikipedia.org/wiki/Minimax)  
-[Alpha-Beta Pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)  
+#### IDDFS
+[The University of British Columbia](https://www.cs.ubc.ca/~hutter/teaching/cpsc322/2-Search6-final.pdf)  
+[Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
+[The University of Nottingham](http://www.cs.nott.ac.uk/~pszbsl/G52APT/slides/09-Iterative-deepening.pdf)  
+[artint.info](http://artint.info/html/ArtInt_62.html)  
 
 
+#### Minimax
+[Wikipedia](https://en.wikipedia.org/wiki/Minimax)  
+
+#### Alpha-Beta Pruning
+[Wikipedia](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)  
+
+#### Customizing the Algorithm
 If you open up main.py you'll see some constants at the top:
 
-```
+``
     SCORE
     DEPTH
     TIME
-```
+``
 
 These constants are used by the bot to perform it's search algorithm. SCORE 
 is the max score for the minimax function, DEPTH is the max depth for the 
@@ -112,9 +122,9 @@ object to override the default argument.
 For example, if I created a new scoring function called 'best_ever', I would 
 change the calls to the CheckersGame constructors like so:
 
-```game = CheckersGame(sys.argv[1], SCORE, DEPTH, TIME, bot_func=best_ever)```
+``game = CheckersGame(sys.argv[1], SCORE, DEPTH, TIME, bot_func=best_ever)``
 
-```game = CheckersGame('source/layouts/8x8.board', SCORE, DEPTH, TIME, bot_func=best_ever)```
+``game = CheckersGame('source/layouts/8x8.board', SCORE, DEPTH, TIME, bot_func=best_ever)``
 
 This would cause the game to use your custom scoring function. 
 
