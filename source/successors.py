@@ -160,7 +160,7 @@ class SuccessorGenerator:
 
                 # King the piece if it has reached the far row.
                 if self._king_condition(x2):
-                    board_copy[x2][y2] = board_copy[x][y].upper()
+                    board_copy[x2][y2] = board_copy[x2][y2].upper()
 
                 # Create new CheckersState and append to successors.
                 successors.append(CheckersState(
