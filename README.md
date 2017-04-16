@@ -128,24 +128,33 @@ search algorithm.
 DEPTH is the max depth for the search algorithm. Changing this will change how 
 many levels of the search tree that the IDDFS attempts to search.   
 
-TIME is the max time to perform the search. There are approximately 1e20 
-possible board states in checkers. Attempting to search them all would not be 
-a wise task. Using Alpha-Beta pruning helps to minimize the branches of the 
-tree we actually search, but even with pruning the search can run a long time. 
-By setting a time limit we are assured that the bot will choose a move in a 
-reasonable amount of time.  
+TIME is the max time to perform the search. There are approximately 
+100,000,000,000,000,000,000 possible board states in checkers. Attempting to 
+search them all would not be a wise task. Using Alpha-Beta pruning helps to 
+minimize the branches of the tree we actually search, but even with pruning the
+search can run a long time. By setting a time limit we are assured that the bot
+will choose a move in a some reasonable amount of time.  
 
-The bot also has a built in scoring function which it uses by default. It's a 
-fairly naive algorithm which simply assigns a score to each piece on the board 
-and returns the sum of those score. The scores used are as follows:  
+The bot also has a built in scoring function which it uses by default to assign
+a score to the current state being looked at. It's a fairly naive algorithm 
+which simply assigns a score to each piece on the board and returns the 
+difference between the current plyer's score and the other player's score.. 
 
-
-``` 
-    Normal bot piece: 1.0
-    Kinged bot piece: 1.5
-    Normal player piece: -1.0
-    Kinged player piece: -1.5
-```  
+```python3
+    def pieces_count(state):
+        bot, player = 0, 0
+        for row in state.board:
+            for square in row:
+                if square == 'b':
+                    bot += 1.0
+                elif square == 'B':
+                    bot += 1.5
+                elif square == 'p':
+                    player += 1.0
+                elif square == 'P':
+                    player += 1.5
+        return (bot - player) if state.bots_move else (player - bot)
+```
 
 There are definitely better, more complex heuristics that could be used and 
 you're welcome to create your own scoring function for use by the bot. To do 
