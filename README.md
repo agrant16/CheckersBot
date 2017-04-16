@@ -27,3 +27,20 @@ filepath to that .board file as a command line argument. For example the
 following command would begin the game with a 10x10 board:
 
 ```python3 main.py source/layouts/10x10.board```
+
+Once the game has begun the current board state will printed to stdout in the 
+following format:  
+
+```  0123456789
+    A _b_b_b_b_b
+    B b_b_b_b_b_
+    C _b_b_b_b_b
+    D b_b_b_b_b_
+    E __________
+    F __________
+    G _p_p_p_p_p
+    H p_p_p_p_p_
+    I _p_p_p_p_p
+    J p_p_p_p_p_```
+
+
