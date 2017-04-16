@@ -87,7 +87,9 @@ algorithm and Alpha-Beta pruning for decision making. The algorithm was inpsired
 in learning more about these algorithms.   
 
 ### Links
+
 #### IDDFS
+
 [The University of British Columbia](https://www.cs.ubc.ca/~hutter/teaching/cpsc322/2-Search6-final.pdf)  
 [Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
 [The University of Nottingham](http://www.cs.nott.ac.uk/~pszbsl/G52APT/slides/09-Iterative-deepening.pdf)  
@@ -115,10 +117,23 @@ in learning more about these algorithms.
     TIME
 ```
 
-These constants are used by the bot to perform it's search algorithm. SCORE 
-is the default score used by the minimax function, DEPTH is the max depth for the 
-search algorithm, and TIME is the max time to perform the search. Feel free 
-to change the values and play around. Right now they work fairly well.  
+These constants are used by the bot to perform it's search algorithm.  
+
+#### About these Variables
+
+SCORE is the default score used by the minimax function. Changing it really 
+won't benefit you because it is simply taking the place of infinity in the 
+search algorithm.   
+
+DEPTH is the max depth for the search algorithm. Changing this will change how 
+many levels of the search tree that the IDDFS attempts to search.   
+
+TIME is the max time to perform the search. There are approximately 1e20 
+possible board states in checkers. Attempting to search them all would not be 
+a wise task. Using Alpha-Beta pruning helps to minimize the branches of the 
+tree we actually search, but even with pruning the search can run a long time. 
+By setting a time limit we are assured that the bot will choose a move in a 
+reasonable amount of time.  
 
 The bot also has a built in scoring function which it uses by default. It's a 
 fairly naive algorithm which simply assigns a score to each piece on the board 
