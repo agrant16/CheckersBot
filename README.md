@@ -85,7 +85,8 @@ travelling paths the bot will never choose. The algorithm was inpsired by a
 [blog post](https://kartikkukreja.wordpress.com/2015/07/12/creating-a-bot-for-checkers/)
  from Kartik Kukreja.  
 
-[IDDFS](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
+<a href="https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search" target="_blank">IDDFS</a>
+[IDDFS]()  
 [Minimax](https://en.wikipedia.org/wiki/Minimax)  
 [Alpha-Beta Pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)  
 
