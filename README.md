@@ -100,6 +100,8 @@ in learning more about these algorithms.
 [Wikipedia page for Minimax](https://en.wikipedia.org/wiki/Minimax)  
 [Wikipedia page for Alpha-Beta Pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)    
 [Series of posts from geeksforgeeks.org](http://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/)  
+[University of California - Berkley lecture video about adversarial search](https://www.youtube.com/watch?feature=player_embedded&v=cwbjLIahbv8)  
+[Supplemental Alpha-Beta pruning video by Prof Petier Abbeel of UC-Berkeley](https://www.youtube.com/watch?v=xBXHtz4Gbdo)  
 [MIT Open Courseware Lecture on Minimax and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)  
 [Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)
 [Blog post about Alph-Beta pruning by Kartik Kukreja](https://kartikkukreja.wordpress.com/2014/06/29/alphabetasearch/)  
