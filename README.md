@@ -80,9 +80,9 @@ And that's all there really is to playing the game.
 
 ## The Algorithm
 
+
 This bot uses an iterative deepening depth-first search (IDDFS) with a minimax 
-algorithm for decision making. It also uses Alpha-Beta pruning to avoid 
-travelling paths the bot will never choose. The algorithm was inpsired by a 
+algorithm and Alpha-Beta pruning for decision making. The algorithm was inpsired by a 
 [blog post](https://kartikkukreja.wordpress.com/2015/07/12/creating-a-bot-for-checkers/)
  from Kartik Kukreja. I've also included some links below if you're intersted 
 in learning more about these algorithms.   
@@ -92,13 +92,16 @@ in learning more about these algorithms.
 [Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
 [The University of Nottingham](http://www.cs.nott.ac.uk/~pszbsl/G52APT/slides/09-Iterative-deepening.pdf)  
 [artint.info](http://artint.info/html/ArtInt_62.html)  
+[Part 1 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=7QcoJjSVT38)  
+[Part 2 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=5MpT0EcOIyM)
 
+#### Minimax and Alpha-Beta Pruning
+[Wikipedia page for Minimax](https://en.wikipedia.org/wiki/Minimax)  
+[Wikipedia page for Alpha-Beta Pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)    
+[Series of posts from geeksforgeeks.org](http://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/)  
+[MIT Open Courseware Lecture on Minimax and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)  
+[Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)
 
-#### Minimax
-[Wikipedia](https://en.wikipedia.org/wiki/Minimax)  
-
-#### Alpha-Beta Pruning
-[Wikipedia](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)  
 
 #### Customizing the Algorithm
 If you open up main.py you'll see some constants at the top:
@@ -110,14 +113,26 @@ If you open up main.py you'll see some constants at the top:
 ```
 
 These constants are used by the bot to perform it's search algorithm. SCORE 
-is the max score for the minimax function, DEPTH is the max depth for the 
+is the default score used by the minimax function, DEPTH is the max depth for the 
 search algorithm, and TIME is the max time to perform the search. Feel free 
 to change the values and play around. Right now they work fairly well.  
 
-The bot also has a built in scoring function which it uses by default. You 
-can change the algorithm the bot uses if you want. Simply implement it where 
-noted in the file and then pass it in when creating the new CheckersGame 
-object to override the default argument.  
+The bot also has a built in scoring function which it uses by default. It's a 
+fairly naive algorithm which simply assigns a score to each piece on the board 
+and returns the sum of those score. The scores used are as follows:
+
+```
+    Normal bot piece: 1.0
+    Kinged bot piece: 1.5
+    Normal player piece: -1.0
+    Kinged player piece: -1.5
+'''  
+
+There are definitely better, more complex heuristics that could be used and 
+you're welcome to create your own scoring function for use by the bot. To do 
+so simply implement your new scoring algorithm where noted in the file and then 
+pass it in when creating the new CheckersGame object to override the default 
+argument.  
 
 For example, if I created a new scoring function called 'best_ever', I would 
 change the calls to the CheckersGame constructors like so:
