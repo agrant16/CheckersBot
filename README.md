@@ -139,7 +139,7 @@ but even with pruning the search can run a long time. By setting a time limit
 The bot also has a built in scoring function which it uses by default to assign
 a score to the current state being looked at. It's a fairly naive algorithm 
 which simply assigns a score to each piece on the board and returns the 
-difference between the current plyer's score and the other player's score.. 
+difference between the current player's score and the other player's score.  
 
 ```python3
     def pieces_count(state):
