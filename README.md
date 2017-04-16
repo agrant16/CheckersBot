@@ -100,10 +100,9 @@ object to override the default argument.
 For example, if I created a new scoring function called 'best_ever', I would 
 change the calls to the CheckersGame constructors like so:
 
-``` game = CheckersGame(sys.argv[1], SCORE, DEPTH, TIME, bot_func=best_ever)
+```game = CheckersGame(sys.argv[1], SCORE, DEPTH, TIME, bot_func=best_ever)```
 
-    game = CheckersGame('source/layouts/8x8.board', SCORE, DEPTH, TIME, bot_func=best_ever)
-```
+```game = CheckersGame('source/layouts/8x8.board', SCORE, DEPTH, TIME, bot_func=best_ever)```
 
 This would cause the game to use your custom scoring function. 
 
