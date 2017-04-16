@@ -92,6 +92,7 @@ in learning more about these algorithms.
 [Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
 [The University of Nottingham](http://www.cs.nott.ac.uk/~pszbsl/G52APT/slides/09-Iterative-deepening.pdf)  
 [artint.info](http://artint.info/html/ArtInt_62.html)  
+[Blot post about uninformed searches by Kartik Kukreja](https://kartikkukreja.wordpress.com/2015/05/30/uninformed-search-algorithms/)  
 [Part 1 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=7QcoJjSVT38)  
 [Part 2 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=5MpT0EcOIyM)
 
@@ -101,8 +102,7 @@ in learning more about these algorithms.
 [Series of posts from geeksforgeeks.org](http://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/)  
 [MIT Open Courseware Lecture on Minimax and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)  
 [Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)
-
-
+[Blog post about Alph-Beta pruning by Kartik Kukreja](https://kartikkukreja.wordpress.com/2014/06/29/alphabetasearch/)  
  
 ### Customizing the Algorithm
  If you open up main.py you'll see some constants at the top:
