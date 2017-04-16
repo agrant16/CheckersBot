@@ -15,8 +15,8 @@ state.
 
 
 from time import time
-from successors import SuccessorGenerator
-from checkers_state import CheckersState
+from .successors import SuccessorGenerator
+from .checkers_state import CheckersState
 
 class CheckersBot:
     """CheckersBot

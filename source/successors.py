@@ -15,7 +15,7 @@ used by the checkers simulation for a checkers playing robot.
 
 from copy import deepcopy
 from time import time
-from checkers_state import CheckersState
+from .checkers_state import CheckersState
 
 
 class SuccessorGenerator:
@@ -265,7 +265,7 @@ class SuccessorGenerator:
             Defaults to False.
         """
         for x in range(self.state.size):
-            for y in range(self.state.size):  
+            for y in range(self.state.size): 
                 if self.state.board[x][y].lower() == player:
                     if not jumps:
                         gen_func(x, y, successors) 

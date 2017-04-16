@@ -14,10 +14,10 @@ class controls the logic for running a checkers simulation.
 
 
 import sys
-from board import CheckersBoard
-from successors import SuccessorGenerator
-from checkers_state import CheckersState
-from checkers_bot import CheckersBot
+from .board import CheckersBoard
+from .successors import SuccessorGenerator
+from .checkers_state import CheckersState
+from .checkers_bot import CheckersBot
 
 class CheckersGame:
     """CheckersGame
@@ -39,7 +39,7 @@ class CheckersGame:
     
     """
     def __init__(self, layout, bot_score, bot_depth, bot_time, 
-                 bot_func=self.eval_func_1):
+                 bot_func=None):
         """ __init__
         
         The __init__ function is the constructor for the CheckersGame Class.
@@ -57,11 +57,14 @@ class CheckersGame:
         self.bot_score = bot_score
         self.bot_depth = bot_depth
         self.bot_time = bot_time
-        self.bot_func = bot_func
         self.board_size = len(self.board.board)
         self.bot = CheckersBot
         self.player_gen = None
         self.bot = None  
+        if bot_func == None:
+            self.bot_func = self.eval_func_1
+        else:
+            self.bot_func = bot_func
         
 
     def eval_func_1(state):
