@@ -80,7 +80,6 @@ And that's all there really is to playing the game.
 
 ## The Algorithm
 
-
 This bot uses an iterative deepening depth-first search (IDDFS) with a minimax 
 algorithm and Alpha-Beta pruning for decision making. The algorithm was inpsired by a 
 [blog post](https://kartikkukreja.wordpress.com/2015/07/12/creating-a-bot-for-checkers/)
@@ -121,10 +120,10 @@ to change the values and play around. Right now they work fairly well.
 
 The bot also has a built in scoring function which it uses by default. It's a 
 fairly naive algorithm which simply assigns a score to each piece on the board 
-and returns the sum of those score. The scores used are as follows:
+and returns the sum of those score. The scores used are as follows:  
 
-```
-    Normal bot piece: 1.0
+
+''' Normal bot piece: 1.0
     Kinged bot piece: 1.5
     Normal player piece: -1.0
     Kinged player piece: -1.5
