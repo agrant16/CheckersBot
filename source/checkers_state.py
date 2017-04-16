@@ -9,8 +9,8 @@ Date: 04/12/2017 \n
 Class: CSCI-C 458 \n
 
 This module provides access to the CheckersState class. This class is used by
-the checkers simulation for a checkers playing robot. It is a state 
-representation of the game board, win/loss condition, and player turn. 
+the checkers simulation for a checkers playing robot. It is a state
+representation of the game board, win/loss condition, and player turn.
 """
 
 
@@ -20,25 +20,25 @@ class CheckersState:
     Attributes:
         board : A list of strings which represent the state of the board.
         bots_move : True if it is black's (the bot's) move.
-        moves : A list of coordinates representing the sequence of moves. 
+        moves : A list of coordinates representing the sequence of moves.
         size : Size of the board. i.e. if the size is 8 then the board is 8x8.
         bot_lost (bool) : True if the state is terminal and the bot has lost,
-        False otherwise. 
+        False otherwise.
     '''
-    
+
     def __init__(self, board, bots_move, moves, size):
         """__init__
-        
+
         The __init__ method is the constructor for the CheckersState class. It
-        creates a CheckersState object based on the information given. 
-        
+        creates a CheckersState object based on the information given.
+
         Args:
-            board (list) : A list of strings representing the current state of 
-            the game board.\n 
+            board (list) : A list of strings representing the current state of
+            the game board.\n
             bots_move (bool) : True if it's the bot's move, False otherwise.\n
-            moves (list) : A list of tuples (x, y) representing the squares in 
+            moves (list) : A list of tuples (x, y) representing the squares in
             the proposed move.\n
-            size (int) : The size of the checkers board. A size of 6 is a 6x6 
+            size (int) : The size of the checkers board. A size of 6 is a 6x6
             board.
         """
         self.board = board
@@ -46,13 +46,13 @@ class CheckersState:
         self.moves = moves
         self.size = size
         self.bot_lost = False
-        
+
     def is_terminal(self):
         '''is_terminal
-        
+
         The is_terminal method detects if all of one color's pieces have been
         eliminated. This is a terminal state for the game.
-        
+
         Returns:
             bool : True if a terminal state has been reached, False otherwise.
         '''
@@ -67,6 +67,3 @@ class CheckersState:
                     return False
         self.bot_lost = player_exists
         return True
-
-               
-
