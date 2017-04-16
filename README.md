@@ -31,7 +31,7 @@ following command would begin the game with a 10x10 board:
 Once the game has begun the current board state will printed to stdout in the 
 following format:  
 
-`` 
+``` 
       0123456789
     A _b_b_b_b_b
     B b_b_b_b_b_
@@ -43,7 +43,7 @@ following format:
     H p_p_p_p_p_
     I _p_p_p_p_p
     J p_p_p_p_p_
-``
+```
 
 The size of the board will vary depending on which board layout you use, but it 
 will follow the same style. 'b's are pieces controlled by the bot and 'p's are 
@@ -61,7 +61,7 @@ will move the piece located at square G3 to square F4.
 You perform jumps the same way and to perform multiple jumps you simply add 
 the need squares. For example if we have the following layout:
 
-`` 
+``` 
      012345
    A ______
    B __b___
@@ -69,7 +69,7 @@ the need squares. For example if we have the following layout:
    D ____b_
    E _____p
    F ______
-``
+```
 and we type in the following move:
 
 ``E5 C3 A1``
@@ -103,11 +103,11 @@ in learning more about these algorithms.
 #### Customizing the Algorithm
 If you open up main.py you'll see some constants at the top:
 
-``
+```
     SCORE
     DEPTH
     TIME
-``
+```
 
 These constants are used by the bot to perform it's search algorithm. SCORE 
 is the max score for the minimax function, DEPTH is the max depth for the 
