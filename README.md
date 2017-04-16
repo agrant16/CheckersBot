@@ -82,11 +82,11 @@ And that's all there really is to playing the game.
 This bot uses an iterative deepening depth-first search (IDDFS) with a minimax 
 algorithm for decision making. It also uses Alpha-Beta pruning to avoid 
 travelling paths the bot will never choose. The algorithm was inpsired by a 
-[blog post](https://kartikkukreja.wordpress.com/2015/07/12/creating-a-bot-for-
-checkers/) from Kartik Kukreja.  
+[blog post]
+(https://kartikkukreja.wordpress.com/2015/07/12/creating-a-bot-for-checkers/) from Kartik Kukreja.  
 
-[Iterative Deepening Depth-First Searc](https://en.wikipedia.org/wiki/
-Iterative_deepening_depth-first_search)
+[Iterative Deepening Depth-First Searc]
+(https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)
 
 
 If you open up main.py you'll see some constants at the top:
