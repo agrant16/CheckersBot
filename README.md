@@ -103,9 +103,9 @@ in learning more about these algorithms.
 [Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)
 
 
-
+ 
 ### Customizing the Algorithm
-If you open up main.py you'll see some constants at the top:
+ If you open up main.py you'll see some constants at the top:
 
 ```
     SCORE
@@ -123,11 +123,12 @@ fairly naive algorithm which simply assigns a score to each piece on the board
 and returns the sum of those score. The scores used are as follows:  
 
 
-''' Normal bot piece: 1.0
+``` 
+    Normal bot piece: 1.0
     Kinged bot piece: 1.5
     Normal player piece: -1.0
     Kinged player piece: -1.5
-'''  
+```  
 
 There are definitely better, more complex heuristics that could be used and 
 you're welcome to create your own scoring function for use by the bot. To do 
