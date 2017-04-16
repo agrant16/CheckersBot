@@ -30,11 +30,11 @@ class CheckersBot:
         max_score (int) : The upper limit for the minimax score.
         max_depth (int) : The max depth for the bot's iddfs algorithm.
         max_time (double) : The max time in seconds for the bot to search.
-        eval_func (function) : The scoring function for the bot to use.
+        score_func (function) : The scoring function for the bot to use.
         start_time (int) : The start time of the bot's search.
     """
 
-    def __init__(self, state, max_score, max_depth, max_time, eval_func):
+    def __init__(self, state, max_score, max_depth, max_time, score_func):
         """ __init__
 
         The __init__ function is the constructor for the CheckersBot.
@@ -44,16 +44,46 @@ class CheckersBot:
             max_score (int) : The max score for the bot's minimax search.\n
             max_depth (int) : The max depth for the bot's IDDFS search.\n
             max_time (float) : The max search time for the bot's search.\n
-            eval_func (function) : The evaluation function used for scoring of
+            score_func (function) : The evaluation function used for scoring of
             states found by the bot's search.\n
         """
         self.state = state
         self.max_score = max_score
         self.max_depth = max_depth
         self.max_time = max_time
-        self.eval_func = eval_func
         self.start_time = 0
+        if score_func:
+            self.score_func = score_func
+        else:
+            self.score_func = self.pieces_count
 
+    def pieces_count(self, state):
+        """pieces_count
+
+        This is a generic scoring function for a CheckersState. It simply
+        assigns a score to each piece on the board and sums that score.
+
+        Args:
+            state (CheckersState) : The current game state.
+
+        Returns:
+            score (int) : A score based on how many pieces are on the board in
+            the current state.
+        """
+        bot, player = 0, 0
+        for row in state.board:
+            for square in row:
+                if square == 'b':
+                    bot += 1.0
+                elif square == 'B':
+                    bot += 1.5
+                elif square == 'p':
+                    player += 1.0
+                elif square == 'P':
+                    player += 1.5
+
+        return (bot - player) if state.bots_move else (player - bot)
+        
     def _max_value(self, state, alpha, beta, depth):
         """_max_value
 
@@ -127,7 +157,7 @@ class CheckersBot:
                     else -self.max_score)
 
         if depth <= 0 or time() - self.start_time > self.max_time:
-            return self.eval_func(state)
+            return self.score_func(state)
 
         return (self._max_value(state, alpha, beta, depth) if state.bots_move
                 else self._min_value(state, alpha, beta, depth))

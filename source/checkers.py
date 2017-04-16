@@ -62,37 +62,7 @@ class CheckersGame:
         self.bot = CheckersBot
         self.player_gen = None
         self.bot = None
-        if bot_func is None:
-            self.bot_func = self.eval_func_1
-        else:
-            self.bot_func = bot_func
-
-    def eval_func_1(self, state):
-        """eval_func_1
-
-        This is a generic scoring function for a CheckersState. It simply
-        assigns a score to each piece on the board and sums that score.
-
-        Args:
-            state (CheckersState) : The current game state.
-
-        Returns:
-            score (int) : A score based on how many pieces are on the board in
-            the current state.
-        """
-        score = 0
-        for row in state.board:
-            for square in row:
-                if square == 'b':
-                    score += 1.0
-                elif square == 'B':
-                    score += 1.5
-                elif square == 'p':
-                    score -= 1.0
-                elif square == 'P':
-                    score -= 1.5
-
-        return score
+        self.bot_func = bot_func
 
     def _get_player_move(self):
         """_get_player_move
