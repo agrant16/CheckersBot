@@ -99,11 +99,11 @@ class CheckersBot:
                     adjuster = 0
 
                 if square == 'b':
-                    bot += 1.0 + adjuster
+                    bot += 1.0 + adjuster - (.1 * (state.size - i))
                 elif square == 'B':
                     bot += 1.5 + adjuster
                 elif square == 'p':
-                    player += 1.0 + adjuster
+                    player += 1.0 + adjuster - (.1 * (i))
                 elif square == 'P':
                     player += 1.5 + adjuster
 
