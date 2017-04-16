@@ -87,6 +87,7 @@ algorithm and Alpha-Beta pruning for decision making. The algorithm was inpsired
  from Kartik Kukreja. I've also included some links below if you're intersted 
 in learning more about these algorithms.   
 
+### Links
 #### IDDFS
 [The University of British Columbia](https://www.cs.ubc.ca/~hutter/teaching/cpsc322/2-Search6-final.pdf)  
 [Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
@@ -103,7 +104,8 @@ in learning more about these algorithms.
 [Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)
 
 
-#### Customizing the Algorithm
+
+### Customizing the Algorithm
 If you open up main.py you'll see some constants at the top:
 
 ```
