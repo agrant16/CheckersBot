@@ -129,11 +129,12 @@ DEPTH is the max depth for the search algorithm. Changing this will change how
 many levels of the search tree that the IDDFS attempts to search.   
 
 TIME is the max time to perform the search. There are approximately 
-100,000,000,000,000,000,000 possible board states in checkers. Attempting to 
-search them all would not be a wise task. Using Alpha-Beta pruning helps to 
-minimize the branches of the tree we actually search, but even with pruning the
-search can run a long time. By setting a time limit we are assured that the bot
-will choose a move in a some reasonable amount of time.  
+100,000,000,000,000,000,000 possible board states in a standard 8x8 game of 
+checkers. Attempting to search them all would not be a wise task. Using 
+Alpha-Beta pruning helps to reduce the branches of the tree we actually search,
+but even with pruning the search can run a long time. By setting a time limit
+ we are assured that the bot will choose a move in what we have decided is some
+ reasonable amount of time.  
 
 The bot also has a built in scoring function which it uses by default to assign
 a score to the current state being looked at. It's a fairly naive algorithm 
