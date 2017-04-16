@@ -77,7 +77,7 @@ class CheckersGame:
         """
         print('It is the player\'s turn. Please input your move.')
         st = input().split()
-        return [(int(ord(x[0]) - 65), int(x[1])) for x in st]
+        return [(int(ord(x[0].lower()) - 97), int(x[1])) for x in st]
 
     def _is_valid_move(self, successors, moves):
         """_is_valid_move
@@ -150,6 +150,11 @@ class CheckersGame:
             print(self.board)
 
             # The player's move
+            self.player_gen.update_state(
+                CheckersState(
+                              self.board.board,
+                              False, [], self.board_size))
+                              
             successors = self.player_gen.successors()
 
             if len(successors) == 0:
@@ -177,16 +182,12 @@ class CheckersGame:
             print('It is the bot\'s move. Waiting on bot...')
             self.bot.update_state(state)
             bots_move = self.bot.get_move()
-            bot_move_str = self._bots_move_to_str(bots_move.moves)
-            print('The bot has chosen the following move: \n' +
-                  bot_move_str)
-
-            if bots_move is None or bots_move.is_terminal():
+            
+            if bots_move:
+                bot_move_str = self._bots_move_to_str(bots_move.moves)
+                print('The bot has chosen the following move: \n' +
+                      bot_move_str)
+                self.board.board = bots_move.board
+            elif not bots_move or bots_move.is_terminal():
                 self._game_over(state)
                 break
-            else:
-                self.board.board = bots_move.board
-
-            self.player_gen.update_state(CheckersState(
-                self.board.board,
-                False, [], self.board_size))
