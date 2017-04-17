@@ -102,12 +102,12 @@ class CheckersBot:
                     bot += (1.0 + adjuster) * (1 + (.1 * ((x + 1) 
                                                / state.size)))
                 elif square == 'B':
-                    bot += 1.5 + adjuster
+                    bot += 2 + adjuster
                 elif square == 'p':
                     player += (1.0 + adjuster) * (1 + (.1 * ((state.size 
                                                   - (x + 1)) / state.size)))
                 elif square == 'P':
-                    player += 1.5 + adjuster
+                    player += 2 + adjuster
 
         return (bot - player) if state.bots_move else (player - bot)
 
