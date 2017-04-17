@@ -109,32 +109,26 @@ in learning more about these algorithms.
 [Blog post about Alph-Beta pruning by Kartik Kukreja](https://kartikkukreja.wordpress.com/2014/06/29/alphabetasearch/)  
  
 ### Customizing the Algorithm
-If you open up main.py you'll see some constants at the top:
+If you open up main.py you'll see some constants at the top. These constants 
+are used by the bot to perform it's search algorithm.
 
-```
-    SCORE
-    DEPTH
-    TIME
-```
-
-These constants are used by the bot to perform it's search algorithm.  
-
-#### About these Variables
-
-SCORE is the default score used by the minimax function. Changing it really 
+* SCORE
+  * This is the default score used by the minimax function. Changing it really 
 won't benefit you because it is simply taking the place of infinity in the 
-search algorithm.   
+search algorithm. 
 
-DEPTH is the max depth for the search algorithm. Changing this will change how 
-many levels of the search tree that the IDDFS attempts to search.   
+* DEPTH
+  * The max depth for the search algorithm. Changing this will change how 
+many levels of the search tree that the IDDFS attempts to search.
 
-TIME is the max time to perform the search. There are approximately 
+* TIME
+  * The max time to perform the search. There are approximately 
 100,000,000,000,000,000,000 possible board states in a standard 8x8 game of 
 checkers. Attempting to search them all would not be a wise task. Using 
 Alpha-Beta pruning helps to reduce the branches of the tree we actually search,
 but even with pruning the search can run a long time. By setting a time limit
  we are assured that the bot will choose a move in what we have decided is some
- reasonable amount of time.  
+ reasonable amount of time.
 
 The bot also has a built in scoring function which it uses by default to assign
 a score to the current state being looked at. It's a fairly naive algorithm 
@@ -144,25 +138,24 @@ score and the other player's score.
 
 Each piece's score is determined by three factors: 
 
-Is it kinged?  
+* Is it kinged?
+  * Kings have a base value of 2 points. 
+  * Normal pieces have a base value of 1 point.
 
-Kings have a base value of 2 points. Normal pieces have a base value of 1 point.
-
-If not how close is it to the far side of the board and being kinged?  
-
-If a piece is normal its score is multiplied by a modifier based on how many 
+* If not how close is it to the far side of the board and being kinged?
+  * If a piece is normal its score is multiplied by a modifier based on how many 
 squares, in a straight line, it is from being kinged. So if we're playing on a 
 standard 8x8 checkers board and a piece is 2 squares away from being kinged 
-then that piece will have its total score multiplied by (1 + 6/8) or 1.75.  
+then that piece will have its total score multiplied by (1 + 6/8) or 1.75.
 
-Is it invulnerable?  
+* Is it invulnerable?
 
-If a piece is in a corner, or against an edge, it is impossible for the 
+  * If a piece is in a corner, or against an edge, it is impossible for the 
 opponenet to capture that piece. Pieces in these positions have their base 
 value increased by 1. So a king in this situation is worth 3 points and a 
-normal piece in this situation is worth 2 points.  
+normal piece in this situation is worth 2 points.
 
-```python3
+```python
    def _is_invulnerable(state, x, y):
        x_bounds = x == 0 or x == (state.size - 1)
        y_bounds = y == 0 or y == (state.size - 1)
@@ -192,11 +185,11 @@ normal piece in this situation is worth 2 points.
 
 There are definitely better, more complex heuristics that could be used and 
 you're welcome to create your own scoring function for use by the bot. To do 
-so simply implement your new scoring algorithm where noted in the file and then 
+so simply implement your new scoring algorithm where noted in main.py and then 
 pass it in when creating the new CheckersGame object to override the default 
 argument.  
 
-For example, if I created a new scoring function called 'best_ever', I would 
+For example, if I created a new scoring function called "best_ever", I would 
 change the calls to the CheckersGame constructors like so:
 
 ``game = CheckersGame(sys.argv[1], SCORE, DEPTH, TIME, bot_func=best_ever)``
