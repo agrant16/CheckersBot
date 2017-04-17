@@ -5,7 +5,7 @@
 **Updated**: 04/15/2017  
 
 This repository is a checkers simulation developed as part of the CheckersBot 
-project in CSCI-C 458: Intelligent Robots and Indiana University Southeast. 
+project in CSCI-C 458: Intelligent Robots at Indiana University Southeast. 
 The goal of this project is to develop a robotic system capable of playing 
 a simplified version of checkers. The overall project consists of three 
 subsystems: a decision maker, a computer vision system, and a robotic system.  
