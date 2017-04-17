@@ -94,7 +94,7 @@ in learning more about these algorithms.
 [Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
 [The University of Nottingham](http://www.cs.nott.ac.uk/~pszbsl/G52APT/slides/09-Iterative-deepening.pdf)  
 [artint.info](http://artint.info/html/ArtInt_62.html)  
-[Blot post about uninformed searches by Kartik Kukreja](https://kartikkukreja.wordpress.com/2015/05/30/uninformed-search-algorithms/)  
+[Blog post about uninformed searches by Kartik Kukreja](https://kartikkukreja.wordpress.com/2015/05/30/uninformed-search-algorithms/)  
 [Part 1 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=7QcoJjSVT38)  
 [Part 2 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=5MpT0EcOIyM)
 
@@ -105,11 +105,11 @@ in learning more about these algorithms.
 [University of California - Berkley lecture video about adversarial search](https://www.youtube.com/watch?feature=player_embedded&v=cwbjLIahbv8)  
 [Supplemental Alpha-Beta pruning video by Prof Petier Abbeel of UC-Berkeley](https://www.youtube.com/watch?v=xBXHtz4Gbdo)  
 [MIT Open Courseware Lecture on Minimax and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)  
-[Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)
+[Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)  
 [Blog post about Alph-Beta pruning by Kartik Kukreja](https://kartikkukreja.wordpress.com/2014/06/29/alphabetasearch/)  
  
 ### Customizing the Algorithm
- If you open up main.py you'll see some constants at the top:
+If you open up main.py you'll see some constants at the top:
 
 ```
     SCORE
@@ -138,23 +138,56 @@ but even with pruning the search can run a long time. By setting a time limit
 
 The bot also has a built in scoring function which it uses by default to assign
 a score to the current state being looked at. It's a fairly naive algorithm 
-which simply assigns a score to each piece on the board and returns the 
-difference between the current player's score and the other player's score.  
+which does three things: it assigns a score to each piece on the board,sums the
+scores for each player, and returns the difference between the current player's 
+score and the other player's score.
+
+Each piece's score is determined by three factors: 
+
+Is it kinged?  
+
+Kings have a base value of 2 points. Normal pieces have a base value of 1 point.
+
+If not how close is it to the far side of the board and being kinged?  
+
+If a piece is normal its score is multiplied by a modifier based on how many 
+squares, in a straight line, it is from being kinged. So if we're playing on a 
+standard 8x8 checkers board and a piece is 2 squares away from being kinged 
+then that piece will have its total score multiplied by (1 + 6/8) or 1.75.  
+
+Is it invulnerable?  
+
+If a piece is in a corner, or against an edge, it is impossible for the 
+opponenet to capture that piece. Pieces in these positions have their base 
+value increased by 1. So a king in this situation is worth 3 points and a 
+normal piece in this situation is worth 2 points.  
 
 ```python3
-    def pieces_count(state):
-        bot, player = 0, 0
-        for row in state.board:
-            for square in row:
-                if square == 'b':
-                    bot += 1.0
-                elif square == 'B':
-                    bot += 1.5
-                elif square == 'p':
-                    player += 1.0
-                elif square == 'P':
-                    player += 1.5
-        return (bot - player) if state.bots_move else (player - bot)
+   def _is_invulnerable(state, x, y):
+       x_bounds = x == 0 or x == (state.size - 1)
+       y_bounds = y == 0 or y == (state.size - 1)
+       return x_bounds or y_bounds
+
+   def _score(state):
+       bot, player = 0, 0
+       for x, row in enumerate(state.board):
+           for y, square in enumerate(row):
+               if _is_invulnerable(state, x, y):
+                   adjuster = 1 
+               else:
+                   adjuster = 0
+
+               if square == 'b':
+                   bot += (1.0 + adjuster) * (1 + (.1 * ((x + 1) / state.size)))
+               elif square == 'B':
+                   bot += 1.5 + adjuster
+               elif square == 'p':
+                   player += (1.0 + adjuster) * (1 + (.1 * ((state.size - x) 
+                                                 / state.size)))
+               elif square == 'P':
+                   player += 1.5 + adjuster
+
+       return (bot - player) if state.bots_move else (player - bot)
 ```
 
 There are definitely better, more complex heuristics that could be used and 
@@ -171,4 +204,3 @@ change the calls to the CheckersGame constructors like so:
 ``game = CheckersGame('source/layouts/8x8.board', SCORE, DEPTH, TIME, bot_func=best_ever)``
 
 This would cause the game to use your custom scoring function. 
-
