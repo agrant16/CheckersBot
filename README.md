@@ -56,7 +56,8 @@ piece to. For example, when prompted to choose your move typing:
 
 ``G3 F4``
 
-will move the piece located at square G3 to square F4.  
+will move the piece located at square G3 to square F4. Moves are case 
+insensitive as well so g3 is the same as G3.  
 
 You perform jumps the same way and to perform multiple jumps you simply add 
 the need squares. For example if we have the following layout:
