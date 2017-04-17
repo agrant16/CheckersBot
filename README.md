@@ -90,23 +90,24 @@ in learning more about these algorithms.
 
 #### IDDFS
 
-[The University of British Columbia](https://www.cs.ubc.ca/~hutter/teaching/cpsc322/2-Search6-final.pdf)  
-[Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)  
-[The University of Nottingham](http://www.cs.nott.ac.uk/~pszbsl/G52APT/slides/09-Iterative-deepening.pdf)  
-[artint.info](http://artint.info/html/ArtInt_62.html)  
-[Blog post about uninformed searches by Kartik Kukreja](https://kartikkukreja.wordpress.com/2015/05/30/uninformed-search-algorithms/)  
-[Part 1 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=7QcoJjSVT38)  
-[Part 2 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=5MpT0EcOIyM)
+* [The University of British Columbia](https://www.cs.ubc.ca/~hutter/teaching/cpsc322/2-Search6-final.pdf)
+* [Wikipedia](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search)
+* [The University of Nottingham](http://www.cs.nott.ac.uk/~pszbsl/G52APT/slides/09-Iterative-deepening.pdf)
+* [artint.info](http://artint.info/html/ArtInt_62.html)
+* [Blog post about uninformed searches by Kartik Kukreja](https://kartikkukreja.wordpress.com/2015/05/30/uninformed-search-algorithms/)
+* [Part 1 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=7QcoJjSVT38)
+* [Part 2 of video by Prof. Douglas Fisher of Vanderbilt University](https://www.youtube.com/watch?v=5MpT0EcOIyM)
 
 #### Minimax and Alpha-Beta Pruning
-[Wikipedia page for Minimax](https://en.wikipedia.org/wiki/Minimax)  
-[Wikipedia page for Alpha-Beta Pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)    
-[Series of posts from geeksforgeeks.org](http://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/)  
-[University of California - Berkley lecture video about adversarial search](https://www.youtube.com/watch?feature=player_embedded&v=cwbjLIahbv8)  
-[Supplemental Alpha-Beta pruning video by Prof Petier Abbeel of UC-Berkeley](https://www.youtube.com/watch?v=xBXHtz4Gbdo)  
-[MIT Open Courseware Lecture on Minimax and Alpha-Beta](https://www.youtube.com/watch?v=STjW3eH0Cik)  
-[Cornell University](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)  
-[Blog post about Alph-Beta pruning by Kartik Kukreja](https://kartikkukreja.wordpress.com/2014/06/29/alphabetasearch/)  
+* [Wikipedia page for minimax](https://en.wikipedia.org/wiki/Minimax)
+* [Wikipedia page for alpha-beta pruning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
+* [Series of posts from geeksforgeeks.org](http://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/)
+* [University of California - Berkley lecture video about adversarial search](https://www.youtube.com/watch?feature=player_embedded&v=cwbjLIahbv8)
+* [Supplemental alpha-beta pruning video by Prof Petier Abbeel of UC-Berkeley](https://www.youtube.com/watch?v=xBXHtz4Gbdo)
+* [MIT 6.034 OCW lecture video on minimax and alpha-beta featuring Prof. Patrick Winston](https://www.youtube.com/watch?v=STjW3eH0Cik)
+* [MIT 6.034 OCW recitation on minimax and alpha-beta featuring Mark Seifter](https://www.youtube.com/watch?v=hM2EAvMkhtk)
+* [Cornell University page on minimax and alpha-beta](https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm)
+* [Blog post about Alph-Beta pruning by Kartik Kukreja](https://kartikkukreja.wordpress.com/2014/06/29/alphabetasearch/)
  
 ### Customizing the Algorithm
 If you open up main.py you'll see some constants at the top. These constants 
@@ -156,31 +157,31 @@ value increased by 1. So a king in this situation is worth 3 points and a
 normal piece in this situation is worth 2 points.
 
 ```python
-   def _is_invulnerable(state, x, y):
-       x_bounds = x == 0 or x == (state.size - 1)
-       y_bounds = y == 0 or y == (state.size - 1)
-       return x_bounds or y_bounds
+def _is_invulnerable(state, x, y):
+    x_bounds = x == 0 or x == (state.size - 1)
+    y_bounds = y == 0 or y == (state.size - 1)
+    return x_bounds or y_bounds
 
-   def _score(state):
-       bot, player = 0, 0
-       for x, row in enumerate(state.board):
-           for y, square in enumerate(row):
-               if _is_invulnerable(state, x, y):
-                   adjuster = 1 
-               else:
-                   adjuster = 0
+def _score(state):
+    bot, player = 0, 0
+    for x, row in enumerate(state.board):
+        for y, square in enumerate(row):
+            if _is_invulnerable(state, x, y):
+                adjuster = 1 
+            else:
+                adjuster = 0
 
-               if square == 'b':
-                   bot += (1.0 + adjuster) * (1 + (.1 * ((x + 1) / state.size)))
-               elif square == 'B':
-                   bot += 2.0 + adjuster
-               elif square == 'p':
-                   player += (1.0 + adjuster) * (1 + (.1 * ((state.size - x) 
-                                                 / state.size)))
-               elif square == 'P':
-                   player += 2.0 + adjuster
+            if square == 'b':
+                bot += (1.0 + adjuster) * (1 + (.1 * ((x + 1) / state.size)))
+            elif square == 'B':
+                bot += 2.0 + adjuster
+            elif square == 'p':
+                player += (1.0 + adjuster) * (1 + (.1 * ((state.size - x) 
+                                             / state.size)))
+            elif square == 'P':
+                player += 2.0 + adjuster
 
-       return (bot - player) if state.bots_move else (player - bot)
+    return (bot - player) if state.bots_move else (player - bot)
 ```
 
 There are definitely better, more complex heuristics that could be used and 
@@ -192,8 +193,11 @@ argument.
 For example, if I created a new scoring function called "best_ever", I would 
 change the calls to the CheckersGame constructors like so:
 
-``game = CheckersGame(sys.argv[1], SCORE, DEPTH, TIME, bot_func=best_ever)``
-
-``game = CheckersGame('source/layouts/8x8.board', SCORE, DEPTH, TIME, bot_func=best_ever)``
+```python
+if len(sys.argv) > 1:
+    game = CheckersGame(sys.argv[1], SCORE, DEPTH, TIME, bot_func=best_ever)
+else:
+    game = CheckersGame('layouts/8x8.board', SCORE, DEPTH, TIME, bot_func=best_ever)
+```
 
 This would cause the game to use your custom scoring function. 
