@@ -77,7 +77,10 @@ class CheckersGame:
         """
         print('It is the player\'s turn. Please input your move.')
         st = input().split()
-        return [(int(ord(x[0].lower()) - 97), int(x[1])) for x in st]
+        try:
+            return [(int(ord(x[0].lower()) - 97), int(x[1])) for x in st]
+        except:
+            return None
 
     def _is_valid_move(self, successors, moves):
         """_is_valid_move
@@ -163,7 +166,10 @@ class CheckersGame:
                 break
 
             moves = self._get_player_move()
-            valid, new_board = self._is_valid_move(successors, moves)
+            if moves:
+                valid, new_board = self._is_valid_move(successors, moves)
+            else:
+                valid = False
 
             if not valid:
                 print('That is not a legal move. Please attempt another move')
