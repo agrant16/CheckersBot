@@ -180,12 +180,12 @@ normal piece in this situation is worth 2 points.
                if square == 'b':
                    bot += (1.0 + adjuster) * (1 + (.1 * ((x + 1) / state.size)))
                elif square == 'B':
-                   bot += 1.5 + adjuster
+                   bot += 2.0 + adjuster
                elif square == 'p':
                    player += (1.0 + adjuster) * (1 + (.1 * ((state.size - x) 
                                                  / state.size)))
                elif square == 'P':
-                   player += 1.5 + adjuster
+                   player += 2.0 + adjuster
 
        return (bot - player) if state.bots_move else (player - bot)
 ```
