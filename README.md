@@ -81,7 +81,7 @@ And that's all there really is to playing the game.
 ## The Algorithm
 
 This bot uses an iterative deepening depth-first search (IDDFS) with a minimax 
-algorithm and Alpha-Beta pruning for decision making. The algorithm was inpsired by a 
+algorithm and alpha-beta pruning for decision making. The algorithm was inpsired by a 
 [blog post](https://kartikkukreja.wordpress.com/2015/07/12/creating-a-bot-for-checkers/)
  from Kartik Kukreja. I've also included some links below if you're intersted 
 in learning more about these algorithms.   
