@@ -55,12 +55,12 @@ class CheckersBot:
         if score_func:
             self.score_func = score_func
         else:
-            self.score_func = self.pieces_count
+            self.score_func = self._score
 
-    def is_invulnerable(self, state, x, y):
-        """is_invulnerable
+    def _is_invulnerable(self, state, x, y):
+        """_is_invulnerable
 
-        The is_invulnerable function checks to see if a piece is at the edge
+        The _is_invulnerable function checks to see if a piece is at the edge
         of the board. If the piece is located at an edge it cannot be taken.
 
         Args:
@@ -75,8 +75,8 @@ class CheckersBot:
         y_bounds = y == 0 or y == (state.size - 1)
         return x_bounds or y_bounds
 
-    def pieces_count(self, state):
-        """pieces_count
+    def _score(self, state):
+        """_score
 
         This is a generic scoring function for a CheckersState. It simply
         assigns a score to each piece on the board and sums that score. It
@@ -91,19 +91,21 @@ class CheckersBot:
             the current state.
         """
         bot, player = 0, 0
-        for i, row in enumerate(state.board):
-            for j, square in enumerate(row):
-                if self.is_invulnerable(state, i, j):
+        for x, row in enumerate(state.board):
+            for y, square in enumerate(row):
+                if self._is_invulnerable(state, x, y):
                     adjuster = 1
                 else:
                     adjuster = 0
 
                 if square == 'b':
-                    bot += 1.0 + adjuster - (.1 * (state.size - i))
+                    bot += (1.0 + adjuster) * (1 + (.1 * ((x + 1) 
+                                               / state.size)))
                 elif square == 'B':
                     bot += 1.5 + adjuster
                 elif square == 'p':
-                    player += 1.0 + adjuster - (.1 * (i))
+                    player += (1.0 + adjuster) * (1 + (.1 * ((state.size 
+                                                  - (x + 1)) / state.size)))
                 elif square == 'P':
                     player += 1.5 + adjuster
 
