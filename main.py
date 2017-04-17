@@ -13,13 +13,13 @@ This is the main file for the checkers game.
 
 
 import sys
-from source.checkers import CheckersGame
+from source import CheckersGame
 
 
 # Constants for the bot's search algorithm.
 SCORE = 1e9
 DEPTH = 25
-TIME = 3
+TIME = 10
 
 
 # Implement a scoring functon here if you so choose
