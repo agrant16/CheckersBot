@@ -19,14 +19,17 @@ Instructions for playing can be found below.
 
 To play the game simply clone the repository and run main.py from the 
 terminal when inside the root folder of the repository. i.e. What the 
-repository would label the CheckersBot folderThe code is Python3 so you'll 
+repository would label the CheckersBot folder. The code is Python 3.5 so you'll 
 want to make sure you have it installed. In the source/layouts folder you can 
-find several .board files which hold layouts for boards of size 4x4, 6x6, 8x8, 
+find several *.board files which hold layouts for boards of size 4x4, 6x6, 8x8, 
 10x10, and 12x12. If you want to use one of the board layouts simply put the 
 filepath to that .board file as a command line argument. For example the 
 following command would begin the game with a 10x10 board:
 
 ``python3 main.py source/layouts/10x10.board``
+
+**NOTE: On your system python3 may not be the command to run Python 3. It could 
+be python, python3.5, etc. Find out which it is and use that command.**
 
 Once the game has begun the current board state will printed to stdout in the 
 following format:  
